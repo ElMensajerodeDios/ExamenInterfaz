@@ -45,6 +45,7 @@ public class DiseñoContenedores extends JFrame {
     private JRadioButton a1Hub;
     private JRadioButton a2Hub;
     private JRadioButton a3Hub;
+    private JButton metodoExamenButton;
 
     private int hubMostrar = 0;
     Puerto p1;
@@ -234,7 +235,7 @@ public class DiseñoContenedores extends JFrame {
         Cant_text.addCaretListener(new CaretListener() {
             @Override
             public void caretUpdate(CaretEvent e) {
-                Mensajes.setText("Número de contenedores procedentes del país indicado.");
+                Mensajes.setText("Contenedores del país pedido.");
             }
         });
         Pais_procbox.addActionListener(new ActionListener() {
@@ -307,6 +308,14 @@ public class DiseñoContenedores extends JFrame {
                 a2Hub.setSelected(false);
                 hubMostrar = 2;
                 Estad_text.setText(p1.toStringHUB(hubMostrar));
+            }
+        });
+        metodoExamenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Mensajes.setText("Mostrando datos de contenedores.");
+                VentanaExamen ventanaPeso = new VentanaExamen(p1.metodoPeso(hubMostrar, Integer.parseInt(Pesotext.getText())));
+                ventanaPeso.setVisible(true);
             }
         });
     }
